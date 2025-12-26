@@ -1,0 +1,40 @@
+trigger:
+- main
+
+pool: anjalipool
+
+stages:
+
+- stage: npminstall
+  displayName: npminstall
+  jobs:
+  - job:  npminstall
+    displayName: npminstall Job
+    steps:
+    - task: PowerShell@2
+      displayName: npm install
+      inputs:
+        targetType: 'inline'
+        script: 'npm install'
+    
+
+    - task: PowerShell@2
+      displayName: npm run build
+      inputs:
+        targetType: 'inline'
+        script: 'npm run build'
+
+
+- stage: artifacts
+  displayName: artifacts
+  jobs: 
+  - job: artifacts
+    displayName: artifacts job
+    steps:
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Artifacts
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'build'
+        publishLocation: 'Container'
+
