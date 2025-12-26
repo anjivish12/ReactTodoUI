@@ -24,12 +24,11 @@ stages:
         targetType: 'inline'
         script: 'npm run build'
   
-    - task: PublishBuildArtifacts@1
-      displayName: Publish Artifacts
+    - task: PublishPipelineArtifact@1
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)\build'
-        ArtifactName: 'build'
-        publishLocation: 'Container'
+        targetPath: '$(Pipeline.Workspace)'
+        artifact: 'build'
+        publishLocation: 'pipeline'
 
 
 
