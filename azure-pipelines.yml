@@ -5,11 +5,11 @@ pool: anjalipool
 
 stages:
 
-- stage: npminstall
-  displayName: npminstall
+- stage: Build
+  displayName: Build
   jobs:
-  - job:  npminstall
-    displayName: npminstall Job
+  - job:  Build
+    displayName: Build
     steps:
     - task: PowerShell@2
       displayName: npm install
@@ -31,3 +31,11 @@ stages:
         artifact: 'build'
         publishLocation: 'pipeline'
 
+
+- stage: linting
+  displayName: linting
+  jobs:
+  - job: linting
+    displayName: Linting
+    steps:
+    
