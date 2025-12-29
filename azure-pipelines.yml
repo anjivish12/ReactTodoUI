@@ -50,9 +50,7 @@ stages:
       continueOnError: true
       inputs:
         targetType: 'inline'
-        script: |
-          npm add -D stylelint stylelint-config-standard
-          stylelint .
+        script: 'stylelint .'
         workingDirectory: '$(System.DefaultWorkingDirectory)'
     
     - task: PowerShell@2
