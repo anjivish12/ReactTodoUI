@@ -59,7 +59,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: 'markdownlint .'
-        workingDirectory: 'https://github.com/anjivish12/ReactTodoUI/blob/main/azure-pipelines.yml'
+        workingDirectory: '$(System.DefaultWorkingDirectory)\azure-pipelines.yml'
 
     
     
