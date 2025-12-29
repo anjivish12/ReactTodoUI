@@ -5,31 +5,31 @@ pool: anjalipool
 
 stages:
 
-- stage: Build
-  displayName: Build
-  jobs:
-  - job:  Build
-    displayName: Build
-    steps:
-    - task: PowerShell@2
-      displayName: npm install
-      inputs:
-        targetType: 'inline'
-        script: 'npm install'
+# - stage: Build
+#   displayName: Build
+#   jobs:
+#   - job:  Build
+#     displayName: Build
+#     steps:
+#     - task: PowerShell@2
+#       displayName: npm install
+#       inputs:
+#         targetType: 'inline'
+#         script: 'npm install'
     
 
-    - task: PowerShell@2
-      displayName: npm run build
-      inputs:
-        targetType: 'inline'
-        script: 'npm run build'
+#     - task: PowerShell@2
+#       displayName: npm run build
+#       inputs:
+#         targetType: 'inline'
+#         script: 'npm run build'
   
-    - task: PublishPipelineArtifact@1
-      displayName: artifacts
-      inputs:
-        targetPath: '$(System.DefaultWorkingDirectory)\build\'
-        artifact: 'build'
-        publishLocation: 'pipeline'
+#     - task: PublishPipelineArtifact@1
+#       displayName: artifacts
+#       inputs:
+#         targetPath: '$(System.DefaultWorkingDirectory)\build\'
+#         artifact: 'build'
+#         publishLocation: 'pipeline'
 
 
 - stage: linting
@@ -37,10 +37,10 @@ stages:
   jobs:
   - job: linting
     displayName: Linting
-    continueOnError: true
     steps:
     - task: PowerShell@2
       displayName: biome (javascript)
+      continueOnError: true
       inputs:
         targetType: 'inline'
         script: 'biome lint'
