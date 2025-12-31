@@ -5,68 +5,69 @@ pool: anjalipool
 
 stages:
 
-- stage: Build
-  displayName: Build
-  jobs:
-  - job:  Build
-    displayName: Build
-    steps:
-    - task: PowerShell@2
-      displayName: npm install
-      inputs:
-        targetType: 'inline'
-        script: 'npm install'
-    
-
-    - task: PowerShell@2
-      displayName: npm run build
-      inputs:
-        targetType: 'inline'
-        script: 'npm run build'
-  
-    - task: PublishPipelineArtifact@1
-      displayName: artifacts
-      inputs:
-        targetPath: '$(System.DefaultWorkingDirectory)\build\'
-        artifact: 'build'
-        publishLocation: 'pipeline'
-
-
-- stage: linting
-  displayName: linting
-  jobs:
-  - job: linting
-    displayName: Linting
-    steps:
-    - task: PowerShell@2
-      displayName: biome (javascript)
-      continueOnError: true
-      inputs:
-        targetType: 'inline'
-        script: 'biome lint'
-    
-    - task: PowerShell@2
-      displayName: CSS (stylelint)
-      continueOnError: true
-      inputs:
-        targetType: 'inline'
-        script: 'stylelint **/*.css'
-        workingDirectory: '$(System.DefaultWorkingDirectory)'
-    
-    - task: PowerShell@2
-      displayName: markdownlint (md file)
-      continueOnError: true
-      inputs:
-        targetType: 'inline'
-        script: 'markdownlint **/*.md'
-        workingDirectory: '$(System.DefaultWorkingDirectory)'
-
-    
-    
-# - stage: Scanning
-#   displayName: scanning
+# - stage: Build
+#   displayName: Build
 #   jobs:
-#   - job: scanning
-#     displayName: scanning
+#   - job:  Build
+#     displayName: Build
 #     steps:
+#     - task: PowerShell@2
+#       displayName: npm install
+#       inputs:
+#         targetType: 'inline'
+#         script: 'npm install'
+    
+
+#     - task: PowerShell@2
+#       displayName: npm run build
+#       inputs:
+#         targetType: 'inline'
+#         script: 'npm run build'
+  
+#     - task: PublishPipelineArtifact@1
+#       displayName: artifacts
+#       inputs:
+#         targetPath: '$(System.DefaultWorkingDirectory)\build\'
+#         artifact: 'build'
+#         publishLocation: 'pipeline'
+
+
+# - stage: linting
+#   displayName: linting
+#   jobs:
+#   - job: linting
+#     displayName: Linting
+#     steps:
+#     - task: PowerShell@2
+#       displayName: biome (javascript)
+#       continueOnError: true
+#       inputs:
+#         targetType: 'inline'
+#         script: 'biome lint'
+    
+#     - task: PowerShell@2
+#       displayName: CSS (stylelint)
+#       continueOnError: true
+#       inputs:
+#         targetType: 'inline'
+#         script: 'stylelint **/*.css'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)'
+    
+#     - task: PowerShell@2
+#       displayName: markdownlint (md file)
+#       continueOnError: true
+#       inputs:
+#         targetType: 'inline'
+#         script: 'markdownlint **/*.md'
+#         workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+    
+    
+- stage: OWASP
+  displayName: OWASP scanning
+  jobs:
+  - job: OWASP
+    displayName: OWASP Scanning
+    steps:
+    
 
