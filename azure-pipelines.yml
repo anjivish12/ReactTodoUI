@@ -63,11 +63,24 @@ stages:
 
     
     
-- stage: OWASP
-  displayName: OWASP scanning
-  jobs:
-  - job: OWASP
-    displayName: OWASP Scanning
-    steps:
+# - stage: OWASP
+#   displayName: OWASP scanning
+#   jobs:
+#   - job: OWASP
+#     displayName: OWASP Scanning
+#     steps:
+    
     
 
+- stage: SCAscan
+  displayName: sca scan
+  jobs:
+  - job: scascanjob
+    displayName: (retire.js)SCA scan
+    steps:
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          npm install -g retire
+          retire
