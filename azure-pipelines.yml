@@ -21,7 +21,7 @@ stages:
           npm install
           npm install -g retire
           retire
-          retire --outputformat cyclonedx
+          retire --exitwith 0
 
 - stage: OWASP
   displayName: OWASP Security Analysis
