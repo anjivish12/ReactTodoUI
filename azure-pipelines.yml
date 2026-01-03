@@ -79,9 +79,11 @@ stages:
     displayName: (retire.js)SCA scan
     steps:
     - task: PowerShell@2
+      displayName: retire.js(javascript)
       inputs:
         targetType: 'inline'
         script: |
           npm install
           npm install -g retire
           retire
+          $ retire --outputformat cyclonedx
