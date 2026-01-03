@@ -63,12 +63,20 @@ stages:
 
     
     
-# - stage: OWASP
-#   displayName: OWASP scanning
-#   jobs:
-#   - job: OWASP
-#     displayName: OWASP Scanning
-#     steps:
+- stage: OWASP
+  displayName: OWASP scanning
+  jobs:
+  - job: OWASP
+    displayName: OWASP Scanning
+    steps:
+    - task: PowerShell@2
+      displayName: sonarqube
+      inputs:
+        targetType: 'inline'
+        script: |
+          npm install -g @sonar/scan
+          
+          sonar -D sonar.host.url=http://localhost:9000 -D sonar.token=sqp_eb531b7e525a0fab310f196279c81b69ddc922bb -D sonar.projectKey=anji
     
     
 
