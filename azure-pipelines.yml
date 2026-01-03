@@ -82,5 +82,6 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
+          npm install
           npm install -g retire
           retire
