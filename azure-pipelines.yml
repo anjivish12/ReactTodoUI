@@ -96,3 +96,4 @@ stages:
           npm install
           npm install -g retire
           retire
+          retire --outputformat cyclonedx
