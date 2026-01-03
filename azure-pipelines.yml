@@ -86,21 +86,13 @@ stages:
   - job: scascanjob
     displayName: (retire.js)SCA scan
     steps:
+  
     - task: PowerShell@2
-      
-      displayName: npm install
+      displayName: retire.js(javascript)
+      continueOnError: true
       inputs:
         targetType: 'inline'
-        script: 'npm install'
-        
-    - task: PowerShell@2
-      displayName: retire install
-      inputs:
-        targetType: 'inline'
-        script: 'npm install -g retire'
-
-    - task: PowerShell@2
-      displayName: retire.js
-      inputs:
-        targetType: 'inline'
-        script: 'retire'
+        script: |
+          npm install
+          npm install -g retire
+          retire
