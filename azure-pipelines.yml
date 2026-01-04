@@ -115,7 +115,7 @@ stages:
       displayName: copy files to VM nginx path
       inputs:
         sshEndpoint: 'dev-vm1'
-        sourceFolder: '$(System.DefaultWorkingDirectory)/specific_anjali_build_artifacts'
+        sourceFolder: '$(System.DefaultWorkingDirectory)/anjali_build_artifacts'
         contents: '**'
         targetFolder: '/home/vm1'
         cleanTargetFolder: true
