@@ -131,7 +131,7 @@ stages:
       inputs:
         sshEndpoint: 'dev-vm1'
         runOptions: 'commands'
-        commands: 'sudo cp -r /home/vm1 /var/www/html'
+        commands: 'sudo cp -r /home/vm1/* /var/www/html'
         readyTimeout: '20000'
 
     
