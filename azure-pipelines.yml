@@ -103,8 +103,20 @@ stages:
     displayName: Deploy to DEV VM 
     steps:
     - task: DownloadPipelineArtifact@2
+      displayName: download artifacts from pipeline
       inputs:
         buildType: 'current'
         targetPath: '$(System.DefaultWorkingDirectory)\anjali_build_artifacts'
+
+    - task: CopyFilesOverSSH@0
+      displayName: copy files to VM nginx path
+      inputs:
+        sshEndpoint: 'dev-vm1'
+        sourceFolder: '$(System.DefaultWorkingDirectory)\anjali_build_artifacts'
+        contents: '**'
+        targetFolder: 'vm1@20.14.219.121:/home/vm1'
+        cleanTargetFolder: true
+        readyTimeout: '20000'
     
+
     
