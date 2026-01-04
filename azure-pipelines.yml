@@ -111,7 +111,7 @@ stages:
         buildVersionToDownload: 'specific'
         pipelineId: '601'
         artifactName: 'build'
-        targetPath: '$(System.DefaultWorkingDirectory)\specific_anjali_build_artifacts'
+        targetPath: '$(System.DefaultWorkingDirectory)/specific_anjali_build_artifacts'
   
 
 
@@ -119,9 +119,9 @@ stages:
       displayName: copy files to VM nginx path
       inputs:
         sshEndpoint: 'dev-vm1'
-        sourceFolder: '$(System.DefaultWorkingDirectory)\specific_anjali_build_artifacts'
+        sourceFolder: '$(System.DefaultWorkingDirectory)/specific_anjali_build_artifacts'
         contents: '**'
-        targetFolder: 'home/vm1'
+        targetFolder: '/home/vm1'
         cleanTargetFolder: true
         readyTimeout: '20000'
     
