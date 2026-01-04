@@ -69,31 +69,31 @@ stages:
 #         workingDirectory: '$(System.DefaultWorkingDirectory)'
 
 
-- stage: Build
-  displayName: Application Build
-  jobs:
-  - job:  Build
-    displayName: Build Application
-    steps:
-    - task: PowerShell@2
-      displayName: Install Project Dependencies (npm install)
-      inputs:
-        targetType: 'inline'
-        script: 'npm install'
+# - stage: Build
+#   displayName: Application Build
+#   jobs:
+#   - job:  Build
+#     displayName: Build Application
+#     steps:
+#     - task: PowerShell@2
+#       displayName: Install Project Dependencies (npm install)
+#       inputs:
+#         targetType: 'inline'
+#         script: 'npm install'
     
 
-    - task: PowerShell@2
-      displayName: Build Application (npm run build)
-      inputs:
-        targetType: 'inline'
-        script: 'npm run build'
+#     - task: PowerShell@2
+#       displayName: Build Application (npm run build)
+#       inputs:
+#         targetType: 'inline'
+#         script: 'npm run build'
   
-    - task: PublishPipelineArtifact@1
-      displayName: Publish Build Artifacts
-      inputs:
-        targetPath: '$(System.DefaultWorkingDirectory)\build\'
-        artifact: 'build'
-        publishLocation: 'pipeline'
+#     - task: PublishPipelineArtifact@1
+#       displayName: Publish Build Artifacts
+#       inputs:
+#         targetPath: '$(System.DefaultWorkingDirectory)\build\'
+#         artifact: 'build'
+#         publishLocation: 'pipeline'
 
 
 - stage: deployeee
@@ -105,14 +105,19 @@ stages:
     - task: DownloadPipelineArtifact@2
       displayName: download artifacts from pipeline
       inputs:
-        buildType: 'current'
-        targetPath: '$(System.DefaultWorkingDirectory)\anjali_build_artifacts'
+        buildType: 'specific'
+        project: '587fbf2b-269b-4579-8924-db577d7138dc'
+        definition: '40'
+        buildVersionToDownload: 'specific'
+        pipelineId: '601'
+        artifactName: 'build'
+        targetPath: '$(System.DefaultWorkingDirectory)\specific_anjali_build_artifacts'
 
     - task: CopyFilesOverSSH@0
       displayName: copy files to VM nginx path
       inputs:
         sshEndpoint: 'dev-vm1'
-        sourceFolder: '$(System.DefaultWorkingDirectory)\anjali_build_artifacts'
+        sourceFolder: '$(System.DefaultWorkingDirectory)\specific_anjali_build_artifacts'
         contents: '**'
         targetFolder: 'vm1@20.14.219.121:/home/vm1'
         cleanTargetFolder: true
