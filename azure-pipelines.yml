@@ -106,3 +106,5 @@ stages:
       inputs:
         buildType: 'current'
         targetPath: '$(System.DefaultWorkingDirectory)\anjali_build_artifacts'
+    
+    
