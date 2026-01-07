@@ -98,6 +98,7 @@ stages:
 
 - stage: deployeee
   displayName: Deploye to VM
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
   jobs:
   - job: deploy
     displayName: Deploy to DEV VM 
