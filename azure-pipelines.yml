@@ -1,5 +1,6 @@
 trigger:
 - develop
+- features
 
 pool: anjalipool
 
@@ -115,7 +116,7 @@ stages:
     - task: CopyFilesOverSSH@0
       displayName: copy files to VM nginx path
       inputs:
-        sshEndpoint: 'dev-vm1'
+        sshEndpoint: 'react-todo'
         sourceFolder: '$(System.DefaultWorkingDirectory)/anjali_build_artifacts'
         contents: '**'
         targetFolder: '/home/vm1'
@@ -126,7 +127,7 @@ stages:
     - task: SSH@0
       displayName: file copy to nginx default path
       inputs:
-        sshEndpoint: 'dev-vm1'
+        sshEndpoint: 'react-todo'
         runOptions: 'commands'
         commands: 'sudo cp -r /home/vm1/* /var/www/html'
         readyTimeout: '20000'
