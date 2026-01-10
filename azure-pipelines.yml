@@ -6,130 +6,20 @@ pool: anjalipool
 
 stages:
 
-- stage: SCAscan
-  displayName: Software Composition Analysis (SCA)
+# - 
+
+- stage: deployvm
+  displayName: deploy VM
   jobs:
-  - job: scascanjob
-    displayName: Dependency Vulnerability Scan
-    steps:
-  
-    - task: PowerShell@2
-      displayName: Run Retire.js Scan (JavaScript Dependencies)
-      continueOnError: true
-      inputs:
-        targetType: 'inline'
-        script: |
-          npm install
-          npm install -g retire
-          retire
-          retire --exitwith 0
-
-- stage: OWASP
-  displayName: OWASP Security Analysis
-  jobs:
-  - job: OWASP
-    displayName: Static Code Security Scan
-    steps:
-    - task: PowerShell@2
-      displayName: Run SonarQube OWASP Scan
-      inputs:
-        targetType: 'inline'
-        script: |
-          npm install -g @sonar/scan
-          
-          sonar -D sonar.host.url=http://localhost:9000 -D sonar.token=sqp_eb531b7e525a0fab310f196279c81b69ddc922bb -D sonar.projectKey=anji
-
-
-- stage: linting
-  displayName: Code Quality & Linting
-  jobs:
-  - job: linting
-    displayName: Lint Source Code
-    steps:
-    - task: PowerShell@2
-      displayName: Run Biome Lint (JavaScript)
-      continueOnError: true
-      inputs:
-        targetType: 'inline'
-        script: 'biome lint'
-    
-    - task: PowerShell@2
-      displayName: Run Stylelint (CSS)
-      continueOnError: true
-      inputs:
-        targetType: 'inline'
-        script: 'stylelint **/*.css'
-        workingDirectory: '$(System.DefaultWorkingDirectory)'
-    
-    - task: PowerShell@2
-      displayName: Run Markdownlint (Documentation)
-      continueOnError: true
-      inputs:
-        targetType: 'inline'
-        script: 'markdownlint **/*.md'
-        workingDirectory: '$(System.DefaultWorkingDirectory)'
-
-
-- stage: Build
-  displayName: Application Build
-  jobs:
-  - job:  Build
-    displayName: Build Application
-    steps:
-    - task: PowerShell@2
-      displayName: Install Project Dependencies (npm install)
-      inputs:
-        targetType: 'inline'
-        script: 'npm install'
-    
-
-    - task: PowerShell@2
-      displayName: Build Application (npm run build)
-      inputs:
-        targetType: 'inline'
-        script: 'npm run build'
-  
-    - task: PublishPipelineArtifact@1
-      displayName: Publish Build Artifacts
-      inputs:
-        targetPath: '$(System.DefaultWorkingDirectory)\build\'
-        artifact: 'build'
-        publishLocation: 'pipeline'
-
-
-- stage: deployeee
-  displayName: Deploye to VM
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
-  jobs:
-  - job: deploy
-    displayName: Deploy to DEV VM 
+  - job: deploye
+    displayName: deploye vm
     steps:
     - task: DownloadPipelineArtifact@2
-      displayName: download artifacts from pipeline
       inputs:
-        buildType: 'current'
+        buildType: 'specific'
+        project: '587fbf2b-269b-4579-8924-db577d7138dc'
+        definition: '40'
+        buildVersionToDownload: 'specific'
+        pipelineId: '505'
         artifactName: 'build'
-        targetPath: '$(System.DefaultWorkingDirectory)/anjali_build_artifacts'
-  
-
-
-    - task: CopyFilesOverSSH@0
-      displayName: copy files to VM nginx path
-      inputs:
-        sshEndpoint: 'dev-vm1'
-        sourceFolder: '$(System.DefaultWorkingDirectory)/anjali_build_artifacts'
-        contents: '**'
-        targetFolder: '/home/vm1'
-        cleanTargetFolder: true
-        readyTimeout: '20000'
-    
-
-    - task: SSH@0
-      displayName: file copy to nginx default path
-      inputs:
-        sshEndpoint: 'dev-vm1'
-        runOptions: 'commands'
-        commands: 'sudo cp -r /home/vm1/* /var/www/html'
-        readyTimeout: '20000'
-
-    
+        targetPath: '$(System.DefaultWorkingDirectory)/anjali_artifatcs'
