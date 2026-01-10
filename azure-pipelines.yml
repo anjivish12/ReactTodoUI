@@ -152,10 +152,13 @@ stages:
               definition: '40'
               buildVersionToDownload: 'specific'
               pipelineId: '612'
-              artifactName: 'build'
-              targetPath: '/var/www/html'
+              targetPath: '$(Pipeline.Workspace)'
         
-      
+          - task: Bash@3
+            displayName: copy file 
+            inputs:
+              targetType: 'inline'
+              script: 'sudo cp $(Pipeline.Workspace)/* /var/www/html'
           
 
           
