@@ -20,6 +20,8 @@ stages:
         project: '587fbf2b-269b-4579-8924-db577d7138dc'
         definition: '40'
         buildVersionToDownload: 'specific'
-        pipelineId: '505'
+        pipelineId: '612'
         artifactName: 'build'
         targetPath: '$(System.DefaultWorkingDirectory)/anjali_artifatcs'
+
+    
