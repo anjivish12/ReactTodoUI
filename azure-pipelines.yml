@@ -5,6 +5,8 @@ pool: anjalipool
 
 stages:
 
+#  stage 1: Software Composition Analysis (SCA)
+
 # - stage: SCAscan
 #   displayName: Software Composition Analysis (SCA)
 #   jobs:
