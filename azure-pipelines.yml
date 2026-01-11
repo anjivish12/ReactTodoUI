@@ -131,6 +131,8 @@ stages:
 #         commands: 'sudo cp -r /home/vm1/* /var/www/html'
 #         readyTimeout: '20000'
 
+#  Alternate way to deploy Build artifacts, 
+#  ::  Using Environment ::
 
 - stage: deploytoVM
   displayName:  deploy
