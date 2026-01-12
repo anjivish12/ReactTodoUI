@@ -19,8 +19,13 @@ stages:
         cliProjectKey: 'B17_G1_Rishabh'
         cliProjectName: 'B17_G1_Rishabh'
         cliSources: '.'
+    - task: SonarQubeAnalyze@8
+      inputs:
+        jdkversion: 'JAVA_HOME'
     
-    
+    - task: SonarQubePublish@8
+      inputs:
+        pollingTimeoutSec: '300'
 #  stage 1: Software Composition Analysis (SCA)
 
 # - stage: SCAscan
