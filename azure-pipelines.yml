@@ -20,6 +20,7 @@ stages:
           sonar.projectKey=B17_G1_salman
           sonar.projectName=B17_G1_salman
           sonar.sources=src
+          sonar.branch.name=main
 
     - task: SonarQubeAnalyze@8
       inputs:
