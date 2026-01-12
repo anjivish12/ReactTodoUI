@@ -13,15 +13,13 @@ stages:
     steps:
     - task: SonarQubePrepare@8
       inputs:
-          SonarQube: 'sonar'
-          scannerMode: 'cli'
-          configMode: 'manual'
-          cliProjectKey: 'B17_G1_Rishabh'
-          cliProjectName: 'B17_G1_Rishabh'
-          cliSources: '.'
-          extraProperties: |
-            sonar.branch.name=main
-            sonar.branch.target=main
+        SonarQube: 'sonar'
+        scannerMode: 'cli'
+        configMode: 'file'
+        extraProperties: |
+          sonar.projectKey=B17_G1_salman
+          sonar.projectName=B17_G1_salman
+          sonar.sources=src
 
     - task: SonarQubeAnalyze@8
       inputs:
