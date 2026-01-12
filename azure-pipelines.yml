@@ -5,12 +5,12 @@ pool: anjalipool
 
 stages:
 
-- stage: sonarqube
-  displayName: sonarqube
-  jobs:
-  - job: sonarqube
-    displayName: sonarqube
-    steps:
+# - stage: sonarqube
+#   displayName: sonarqube
+#   jobs:
+#   - job: sonarqube
+#     displayName: sonarqube
+#     steps:
     
 #  stage 1: Software Composition Analysis (SCA)
 
@@ -32,20 +32,20 @@ stages:
 #           retire
 #           retire --exitwith 0
 
-# - stage: OWASP
-#   displayName: OWASP Security Analysis
-#   jobs:
-#   - job: OWASP
-#     displayName: Static Code Security Scan
-#     steps:
-#     - task: PowerShell@2
-#       displayName: Run SonarQube OWASP Scan
-#       inputs:
-#         targetType: 'inline'
-#         script: |
-#           npm install -g @sonar/scan
+- stage: OWASP
+  displayName: OWASP Security Analysis
+  jobs:
+  - job: OWASP
+    displayName: Static Code Security Scan
+    steps:
+    - task: PowerShell@2
+      displayName: Run SonarQube OWASP Scan
+      inputs:
+        targetType: 'inline'
+        script: |
+          npm install -g @sonar/scan
           
-#           sonar -D sonar.host.url=http://localhost:9000 -D sonar.token=sqp_eb531b7e525a0fab310f196279c81b69ddc922bb -D sonar.projectKey=anji
+          sonar -D sonar.host.url=http://localhost:9000 -D sonar.token=sqp_01062341f1ca22114c41d729e21cfd499f02d601 -D sonar.projectKey=B17_G2_anjali - D sonar.projectName=B17_G2_anjali
 
 
 # - stage: linting
@@ -143,33 +143,30 @@ stages:
 #  Alternate way to deploy Build artifacts, 
 #  ::  Using Environment ::
 
-- stage: deploytoVM
-  displayName:  deploy
-  jobs:
-  - deployment: deploytoVM
-    displayName: deployment to VM using environment
-    environment: 
-      name: dev
-      resourceType: virtualMachine
-    strategy:                 # deployment strategy
-      runOnce:              # default strategy
-        deploy:
-          steps:
-          - task: DownloadPipelineArtifact@2
-            displayName: download artifacts
-            inputs:
-              buildType: 'specific'
-              project: '587fbf2b-269b-4579-8924-db577d7138dc'
-              definition: '40'
-              buildVersionToDownload: 'specific'
-              pipelineId: '612'
-              targetPath: '$(Pipeline.Workspace)'
+# - stage: deploytoVM
+#   displayName:  deploy
+#   jobs:
+#   - deployment: deploytoVM
+#     displayName: deployment to VM using environment
+#     environment: 
+#       name: dev
+#       resourceType: virtualMachine
+#     strategy:                 # deployment strategy
+#       runOnce:              # default strategy
+#         deploy:
+#           steps:
+#           - task: DownloadPipelineArtifact@2
+#             displayName: download artifacts
+#             inputs:
+#               buildType: 'specific'
+#               project: '587fbf2b-269b-4579-8924-db577d7138dc'
+#               definition: '40'
+#               buildVersionToDownload: 'specific'
+#               pipelineId: '612'
+#               targetPath: '$(Pipeline.Workspace)'
         
-          - task: Bash@3
-            displayName: copy file 
-            inputs:
-              targetType: 'inline'
-              script: 'sudo cp $(Pipeline.Workspace)/* /var/www/html'
-          
-
-          
+#           - task: Bash@3
+#             displayName: copy file 
+#             inputs:
+#               targetType: 'inline'
+#               script: 'sudo cp $(Pipeline.Workspace)/* /var/www/html'
