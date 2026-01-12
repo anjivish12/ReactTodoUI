@@ -5,6 +5,13 @@ pool: anjalipool
 
 stages:
 
+- stage: sonarqube
+  displayName: sonarqube
+  jobs:
+  - job: sonarqube
+    displayName: sonarqube
+    steps:
+    
 #  stage 1: Software Composition Analysis (SCA)
 
 # - stage: SCAscan
