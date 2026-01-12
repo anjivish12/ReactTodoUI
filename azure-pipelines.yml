@@ -19,6 +19,9 @@ stages:
         cliProjectKey: 'B17_G1_Rishabh'
         cliProjectName: 'B17_G1_Rishabh'
         cliSources: '.'
+        extraProperties: |
+          sonar.branch.name=main
+          sonar.branch.target=main
     - task: SonarQubeAnalyze@8
       inputs:
         jdkversion: 'JAVA_HOME_17_X64'
