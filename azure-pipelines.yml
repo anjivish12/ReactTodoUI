@@ -5,12 +5,21 @@ pool: anjalipool
 
 stages:
 
-# - stage: sonarqube
-#   displayName: sonarqube
-#   jobs:
-#   - job: sonarqube
-#     displayName: sonarqube
-#     steps:
+- stage: sonarqube
+  displayName: sonarqube
+  jobs:
+  - job: sonarqube
+    displayName: sonarqube
+    steps:
+    - task: SonarQubePrepare@8
+      inputs:
+        SonarQube: 'sonar'
+        scannerMode: 'cli'
+        configMode: 'manual'
+        cliProjectKey: 'B17_G1_Rishabh'
+        cliProjectName: 'B17_G1_Rishabh'
+        cliSources: '.'
+    
     
 #  stage 1: Software Composition Analysis (SCA)
 
@@ -32,20 +41,20 @@ stages:
 #           retire
 #           retire --exitwith 0
 
-- stage: OWASP
-  displayName: OWASP Security Analysis
-  jobs:
-  - job: OWASP
-    displayName: Static Code Security Scan
-    steps:
-    - task: PowerShell@2
-      displayName: Run SonarQube OWASP Scan
-      inputs:
-        targetType: 'inline'
-        script: |
-          npm install -g @sonar/scan
+# - stage: OWASP
+#   displayName: OWASP Security Analysis
+#   jobs:
+#   - job: OWASP
+#     displayName: Static Code Security Scan
+#     steps:
+#     - task: PowerShell@2
+#       displayName: Run SonarQube OWASP Scan
+#       inputs:
+#         targetType: 'inline'
+#         script: |
+#           npm install -g @sonar/scan
           
-          sonar -D sonar.host.url=http://localhost:9000 -D sonar.token=sqp_e624b32308fefb347d94754a648597957bc8eb66 -D sonar.projectKey=B17_G1_salman - D sonar.projectName=B17_G1_salman
+#           sonar -D sonar.host.url=http://localhost:9000 -D sonar.token=sqp_e624b32308fefb347d94754a648597957bc8eb66 -D sonar.projectKey=B17_G1_salman - D sonar.projectName=B17_G1_salman
 
 
 # - stage: linting
