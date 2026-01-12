@@ -18,8 +18,7 @@ stages:
         configMode: 'manual'
         cliProjectKey: 'B17_G1_Rishabh'
         cliProjectName: 'B17_G1_Rishabh'
-        cliSources: 'src'
-        extraProperties: 'sonar.branch.name='
+        cliSources: '.'
     - task: SonarQubeAnalyze@8
       inputs:
         jdkversion: 'JAVA_HOME_17_X64'
