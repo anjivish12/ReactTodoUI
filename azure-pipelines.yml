@@ -45,7 +45,7 @@ stages:
         script: |
           npm install -g @sonar/scan
           
-          sonar -D sonar.host.url=http://localhost:9000 -D sonar.token=sqp_01062341f1ca22114c41d729e21cfd499f02d601 -D sonar.projectKey=B17_G2_anjali - D sonar.projectName=B17_G2_anjali
+          sonar -D sonar.host.url=http://localhost:9000 -D sonar.token=sqp_e624b32308fefb347d94754a648597957bc8eb66 -D sonar.projectKey=B17_G1_salman - D sonar.projectName=B17_G1_salman
 
 
 # - stage: linting
