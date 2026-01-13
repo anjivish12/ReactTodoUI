@@ -27,7 +27,8 @@ stages:
         jdkSourceOption: 'LocalDirectory'
         jdkFile: 'C:\agent\_work\_tool\jdk-17.0.12_windows-x64_bin.zip'
         jdkDestinationDirectory: 'C:\agent\_work\_tool\java17'
-        cleanDestinationDirectory: true
+        cleanDestinationDirectory: false
+        createExtractDirectory: false
 
 
     - task: SonarQubeAnalyze@8
