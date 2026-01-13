@@ -18,6 +18,7 @@ stages:
         cliProjectKey: 'B17_G1_Rohit'
         cliProjectName: 'B17_G1_Rohit'
         cliSources: '.'
+        extraProperties: 'sonar.sourceEncoding=UTF-8'
       
     
     - task: JavaToolInstaller@1
