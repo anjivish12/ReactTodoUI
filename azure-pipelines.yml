@@ -19,11 +19,7 @@ stages:
         cliProjectKey: 'B17_G1_Rohit'
         cliProjectName: 'B17_G1_Rohit'
         cliSources: '.'
-        extraProperties: |
-          sonar.projectKey=B17_G1_salman
-          sonar.projectName=B17_G1_salman
-          sonar.sources=src
-          sonar.branch.name=main
+      
 
     - task: SonarQubeAnalyze@8
       inputs:
