@@ -22,15 +22,16 @@ stages:
     
     - task: JavaToolInstaller@1
       inputs:
-        versionSpec: '21'
+        versionSpec: '17'
         jdkArchitectureOption: 'x64'
         jdkSourceOption: 'LocalDirectory'
-        jdkFile: 'C:\agent\_work\_tool\jdk-21_windows-x64_bin\jdk-21.0.9'
+        jdkFile: 'C:\agent\_work\_tool\jdk-17.0.12_windows-x64_bin\jdk-17.0.12'
+        cleanDestinationDirectory: true
 
 
     - task: SonarQubeAnalyze@8
       inputs:
-        jdkversion: 'JAVA_HOME_21_X64'
+        jdkversion: 'JAVA_HOME_17_X64'
 
     - task: SonarQubePublish@8
       inputs:
