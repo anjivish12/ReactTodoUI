@@ -15,7 +15,10 @@ stages:
       inputs:
         SonarQube: 'sonar'
         scannerMode: 'cli'
-        configMode: 'file'
+        configMode: 'manual'
+        cliProjectKey: 'B17_G1_Rohit'
+        cliProjectName: 'B17_G1_Rohit'
+        cliSources: '.'
         extraProperties: |
           sonar.projectKey=B17_G1_salman
           sonar.projectName=B17_G1_salman
@@ -24,11 +27,11 @@ stages:
 
     - task: SonarQubeAnalyze@8
       inputs:
-          jdkversion: 'JAVA_HOME_17_X64'
+        jdkversion: 'JAVA_HOME_17_X64'
 
     - task: SonarQubePublish@8
       inputs:
-          pollingTimeoutSec: '300'
+        pollingTimeoutSec: '300'
 #  stage 1: Software Composition Analysis (SCA)
 
 # - stage: SCAscan
