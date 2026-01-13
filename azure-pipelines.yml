@@ -25,7 +25,8 @@ stages:
         versionSpec: '17'
         jdkArchitectureOption: 'x64'
         jdkSourceOption: 'LocalDirectory'
-        jdkFile: 'C:\agent\_work\_tool\jdk-17.0.12_windows-x64_bin\jdk-17.0.12'
+        jdkFile: 'C:\agent\_work\_tool\jdk-17.0.12_windows-x64_bin.zip'
+        jdkDestinationDirectory: 'C:\agent\_work\_tool'
         cleanDestinationDirectory: true
 
 
