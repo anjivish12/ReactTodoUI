@@ -11,8 +11,6 @@ stages:
     displayName: sonarqube
     steps:
     - task: SonarQubePrepare@8
-      condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
-
       inputs:
         SonarQube: 'sonar'
         scannerMode: 'cli'
@@ -24,8 +22,6 @@ stages:
       
     
     - task: JavaToolInstaller@1
-      condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
-
       inputs:
         versionSpec: '17'
         jdkArchitectureOption: 'x64'
@@ -37,14 +33,10 @@ stages:
 
 
     - task: SonarQubeAnalyze@8
-      condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
-
       inputs:
         jdkversion: 'JAVA_HOME_17_X64'
 
     - task: SonarQubePublish@8
-      condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
-
       inputs:
         pollingTimeoutSec: '300'
 #  stage 1: Software Composition Analysis (SCA)
