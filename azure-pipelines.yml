@@ -19,11 +19,15 @@ stages:
         cliProjectName: 'B17_G1_Rohit'
         cliSources: '.'
       
+    
     - task: JavaToolInstaller@1
       inputs:
         versionSpec: '21'
         jdkArchitectureOption: 'x64'
-        jdkSourceOption: 'PreInstalled'
+        jdkSourceOption: 'LocalDirectory'
+        jdkFile: 'C:\agent\_work\_tool\jdk-21_windows-x64_bin\jdk-21.0.9\bin'
+        jdkDestinationDirectory: 'C:\agent\_work\_tool\jdk-21_windows-x64_bin\jdk-21.0.9\bin'
+        cleanDestinationDirectory: true
 
     - task: SonarQubeAnalyze@8
       inputs:
